@@ -24,7 +24,7 @@ public class Transacao {
     private UUID uuid_externo = UUID.randomUUID();
 
     @Column(nullable = false)
-    private String tipo;
+    private String tipo; // "RECEITA" ou "DESPESA"
 
     @Column(nullable = false)
     private BigDecimal valor;
@@ -32,17 +32,14 @@ public class Transacao {
     @Column
     private String descricao;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
-
-    // Adicionei os seguintes campos abaixo pois preciso desses dados para
-    // retornar no grafico :D
-
-    @Column
-    private String categoria; // Ex: "Alimentação", "Transporte", etc.
+    @Column(nullable = false)
+    private String categoria; // Ex: "Alimentação", "Transporte", "Salário", etc.
 
     @Column(nullable = false)
     @CreationTimestamp
     private LocalDateTime data_transacao;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
 }
