@@ -23,9 +23,7 @@ public class UsuarioService {
 
     public SaldoResponseDTO getSaldo(UUID uuidUsuario) {
         // Verificar se usuário existe
-        Usuario usuario = usuarioRepository.findByUuidExterno(uuidUsuario)
-                .orElseThrow(() -> new ResourceNotFoundException(
-                        "Usuário não encontrado com UUID: " + uuidUsuario));
+        Usuario usuario = buscarPorUuid(uuidUsuario);
 
         // Buscar todas as transações do usuário
         List<Transacao> transacoes = transacaoRepository.findAllByUsuarioUuid(uuidUsuario);

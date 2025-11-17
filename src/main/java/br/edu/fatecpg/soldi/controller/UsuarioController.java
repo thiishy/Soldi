@@ -20,7 +20,6 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
     private final TransacaoService transacaoService;
 
-
     @GetMapping("/{uuid}/saldo")
     public ResponseEntity<SaldoResponseDTO> getSaldo(@PathVariable("uuid") UUID uuidUsuario) {
         SaldoResponseDTO saldo = usuarioService.getSaldo(uuidUsuario);
