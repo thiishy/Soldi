@@ -1,5 +1,6 @@
 package br.edu.fatecpg.soldi.service;
 
+import br.edu.fatecpg.soldi.dto.request.CriarTransacaoDTO;
 import br.edu.fatecpg.soldi.dto.response.GastoPorCategoriaDTO;
 import br.edu.fatecpg.soldi.dto.response.TransacaoResumoDTO;
 import br.edu.fatecpg.soldi.exception.ResourceNotFoundException;
@@ -24,7 +25,7 @@ public class TransacaoService {
      */
     public List<TransacaoResumoDTO> getTransacoesRecentes(UUID uuidUsuario) {
         List<Transacao> transacoes = transacaoRepository
-                .buscarUltimas5(uuidUsuario);
+                .buscarUltimasCinco(uuidUsuario);
 
         return transacoes.stream()
                 .map(this::converterParaResumoDTO)
@@ -68,7 +69,7 @@ public class TransacaoService {
 
                     return new GastoPorCategoriaDTO(categoria, totalCategoria, quantidade, percentual);
                 })
-                .sorted(Comparator.comparing(GastoPorCategoriaDTO::getTotal).reversed())
+                .sorted(Comparator.comparing(GastoPorCategoriaDTO::total).reversed())
                 .collect(Collectors.toList());
     }
 
@@ -83,4 +84,50 @@ public class TransacaoService {
                 transacao.getData_transacao()
         );
     }
+
+    public List<TransacaoResumoDTO> listarTodasTransacoes() {
+        return transacaoRepository.findAll()
+                .stream().map(t -> new TransacaoResumoDTO(t.getUuid_externo(), t.getTipo(), t.getValor(), t.getDescricao(), t.getCategoria(), t.getData_transacao()))
+                .toList();
+    }
+
+    public TransacaoResumoDTO criarTransacao(CriarTransacaoDTO criarTransacaoDto) {
+        Transacao transacao = new Transacao();
+        transacao.setTipo(criarTransacaoDto.tipo());
+        transacao.setValor(criarTransacaoDto.valor());
+        transacao.setDescricao(criarTransacaoDto.descricao());
+        transacao.setCategoria(criarTransacaoDto.categoria());
+
+        transacaoRepository.save(transacao);
+
+        return converterParaResumoDTO(transacao);
+    }
+
+    public TransacaoResumoDTO buscarTransacao(UUID uuidTransacao) {
+        Transacao transacao = transacaoRepository.findByUuidExterno(uuidTransacao)
+                .orElseThrow(() -> new ResourceNotFoundException("Transação não encontrada."));
+
+        return converterParaResumoDTO(transacao);
+    }
+
+    public TransacaoResumoDTO atualizarTransacao(UUID uuidTransacao, CriarTransacaoDTO transacaoAtualizada) {
+        Transacao transacao = transacaoRepository.findByUuidExterno(uuidTransacao)
+                .orElseThrow(() -> new ResourceNotFoundException("Transação não encontrada."));
+
+        transacao.setTipo(transacaoAtualizada.tipo());
+        transacao.setValor(transacaoAtualizada.valor());
+        transacao.setDescricao(transacaoAtualizada.descricao());
+        transacao.setCategoria(transacaoAtualizada.categoria());
+
+        transacaoRepository.save(transacao);
+        return converterParaResumoDTO(transacao);
+    }
+
+    public void deletarTransacao(UUID uuidTransacao) {
+        Transacao transacao = transacaoRepository.findByUuidExterno(uuidTransacao)
+                .orElseThrow(() -> new ResourceNotFoundException("Transação não encontrada."));
+
+        transacaoRepository.delete(transacao);
+    }
+
 }
