@@ -6,7 +6,9 @@ import br.edu.fatecpg.soldi.dto.response.GastoPorCategoriaDTO;
 import br.edu.fatecpg.soldi.dto.response.TransacaoResumoDTO;
 import br.edu.fatecpg.soldi.exception.ResourceNotFoundException;
 import br.edu.fatecpg.soldi.model.Transacao;
+import br.edu.fatecpg.soldi.model.Usuario;
 import br.edu.fatecpg.soldi.repository.TransacaoRepository;
+import br.edu.fatecpg.soldi.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ import java.util.stream.Collectors;
 public class TransacaoService {
 
     private final TransacaoRepository transacaoRepository;
+    private final UsuarioRepository usuarioRepository;
 
     /**
      * Retorna as últimas 5 transações de um usuário
@@ -93,11 +96,15 @@ public class TransacaoService {
     }
 
     public TransacaoResumoDTO criarTransacao(CriarTransacaoDTO criarTransacaoDto) {
+        Usuario usuario = usuarioRepository.findByUuidExterno(criarTransacaoDto.uuidUsuario())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado."));
+
         Transacao transacao = new Transacao();
         transacao.setTipo(criarTransacaoDto.tipo());
         transacao.setValor(criarTransacaoDto.valor());
         transacao.setDescricao(criarTransacaoDto.descricao());
         transacao.setCategoria(criarTransacaoDto.categoria());
+        transacao.setUsuario(usuario);
 
         transacaoRepository.save(transacao);
 
