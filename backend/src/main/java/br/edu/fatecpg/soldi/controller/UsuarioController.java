@@ -1,8 +1,10 @@
 package br.edu.fatecpg.soldi.controller;
 
+import br.edu.fatecpg.soldi.dto.response.ChatResponseDTO;
 import br.edu.fatecpg.soldi.dto.response.GastoPorCategoriaDTO;
 import br.edu.fatecpg.soldi.dto.response.SaldoResponseDTO;
 import br.edu.fatecpg.soldi.dto.response.TransacaoResumoDTO;
+import br.edu.fatecpg.soldi.service.ChatService;
 import br.edu.fatecpg.soldi.service.TransacaoService;
 import br.edu.fatecpg.soldi.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ public class UsuarioController {
 
     private final UsuarioService usuarioService;
     private final TransacaoService transacaoService;
+    private final ChatService chatService;
 
     @GetMapping("/{uuid}/saldo")
     public ResponseEntity<SaldoResponseDTO> getSaldo(@PathVariable("uuid") UUID uuidUsuario) {
@@ -31,6 +34,12 @@ public class UsuarioController {
             @PathVariable("uuid") UUID uuidUsuario) {
         List<TransacaoResumoDTO> todasTransacoes = transacaoService.listarTodasTransacoes(uuidUsuario);
         return ResponseEntity.ok(todasTransacoes);
+    }
+
+    @GetMapping("/{uuid}/transacoes/ai-insight")
+    public ResponseEntity<ChatResponseDTO> getAiInsight(@PathVariable("uuid") UUID uuidUsuario) {
+        ChatResponseDTO resposta = chatService.getTransactionInsight(uuidUsuario);
+        return ResponseEntity.ok(resposta);
     }
 
     @GetMapping("/{uuid}/transacoes/recentes")
