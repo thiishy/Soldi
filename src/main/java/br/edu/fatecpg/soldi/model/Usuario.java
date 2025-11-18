@@ -20,8 +20,8 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private UUID uuid_externo = UUID.randomUUID();
+    @Column(name = "uuid_externo", nullable = false, unique = true)
+    private UUID uuidExterno = UUID.randomUUID();
 
     @Column(nullable = false)
     private String nome;
@@ -35,7 +35,7 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Transacao> transacoes;
 
-    @Column(nullable = false)
+    @Column(name = "data_criacao", nullable = false)
     @CreationTimestamp
-    private LocalDateTime data_criacao;
+    private LocalDateTime dataCriacao;
 }

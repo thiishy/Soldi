@@ -20,8 +20,8 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private UUID uuid_externo = UUID.randomUUID();
+    @Column(name = "uuid_externo", nullable = false, unique = true)
+    private UUID uuidExterno = UUID.randomUUID();
 
     @Column(nullable = false)
     private String tipo; // "RECEITA" ou "DESPESA"
@@ -35,9 +35,9 @@ public class Transacao {
     @Column(nullable = false)
     private String categoria; // Ex: "Alimentação", "Transporte", "Salário", etc.
 
-    @Column(nullable = false)
+    @Column(name = "data_transacao", nullable = false)
     @CreationTimestamp
-    private LocalDateTime data_transacao;
+    private LocalDateTime dataTransacao;
 
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
