@@ -26,6 +26,13 @@ public class UsuarioController {
         return ResponseEntity.ok(saldo);
     }
 
+    @GetMapping("/{uuid}/transacoes/todas-transacoes")
+    public ResponseEntity<List<TransacaoResumoDTO>> listarTodas(
+            @PathVariable("uuid") UUID uuidUsuario) {
+        List<TransacaoResumoDTO> todasTransacoes = transacaoService.listarTodasTransacoes(uuidUsuario);
+        return ResponseEntity.ok(todasTransacoes);
+    }
+
     @GetMapping("/{uuid}/transacoes/recentes")
     public ResponseEntity<List<TransacaoResumoDTO>> getTransacoesRecentes(
             @PathVariable("uuid") UUID uuidUsuario) {

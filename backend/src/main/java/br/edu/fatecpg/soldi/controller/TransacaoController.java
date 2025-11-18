@@ -19,12 +19,6 @@ public class TransacaoController {
 
     private final TransacaoService transacaoService;
 
-    @GetMapping
-    public ResponseEntity<List<TransacaoResumoDTO>> listarTodas() {
-        List<TransacaoResumoDTO> todasTransacoes = transacaoService.listarTodasTransacoes();
-        return ResponseEntity.ok(todasTransacoes);
-    }
-
     @PostMapping
     public ResponseEntity<TransacaoResumoDTO> criar(@RequestBody CriarTransacaoDTO criarTransacaoDto) {
         TransacaoResumoDTO novaTransacao = transacaoService.criarTransacao(criarTransacaoDto);
