@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -18,11 +20,11 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private UUID uuid_externo = UUID.randomUUID();
+    @Column(name = "uuid_externo", nullable = false, unique = true)
+    private UUID uuidExterno = UUID.randomUUID();
 
     @Column(nullable = false)
-    private String tipo;
+    private String tipo; // "RECEITA" ou "DESPESA"
 
     @Column(nullable = false)
     private BigDecimal valor;
@@ -30,7 +32,14 @@ public class Transacao {
     @Column
     private String descricao;
 
+    @Column(nullable = false)
+    private String categoria; // Ex: "Alimentação", "Transporte", "Salário", etc.
+
+    @Column(name = "data_transacao", nullable = false)
+    @CreationTimestamp
+    private LocalDateTime dataTransacao;
+
     @ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 }
