@@ -1,5 +1,6 @@
 package br.edu.fatecpg.soldi.controller;
 
+import br.edu.fatecpg.soldi.dto.request.AtualizarTransacaoDTO;
 import br.edu.fatecpg.soldi.dto.request.CriarTransacaoDTO;
 import br.edu.fatecpg.soldi.dto.response.TransacaoResumoDTO;
 import br.edu.fatecpg.soldi.service.TransacaoService;
@@ -39,7 +40,7 @@ public class TransacaoController {
     @PutMapping("/{uuid}")
     public ResponseEntity<TransacaoResumoDTO> atualizar(
             @PathVariable("uuid") UUID uuidTransacao,
-            @RequestBody CriarTransacaoDTO transacaoAtualizada) {
+            @RequestBody AtualizarTransacaoDTO transacaoAtualizada) {
 
         TransacaoResumoDTO transacaoAtt = transacaoService.atualizarTransacao(uuidTransacao, transacaoAtualizada);
         return ResponseEntity.ok().body(transacaoAtt);
