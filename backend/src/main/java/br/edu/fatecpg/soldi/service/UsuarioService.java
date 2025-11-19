@@ -2,8 +2,8 @@ package br.edu.fatecpg.soldi.service;
 
 import br.edu.fatecpg.soldi.dto.response.SaldoResponseDTO;
 import br.edu.fatecpg.soldi.exception.ResourceNotFoundException;
+import br.edu.fatecpg.soldi.model.TipoTransacao;
 import br.edu.fatecpg.soldi.model.Transacao;
-import br.edu.fatecpg.soldi.model.Usuario;
 import br.edu.fatecpg.soldi.repository.TransacaoRepository;
 import br.edu.fatecpg.soldi.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,13 +29,13 @@ public class UsuarioService {
 
         // Calcular receitas
         BigDecimal totalReceitas = transacoes.stream()
-                .filter(t -> "RECEITA".equalsIgnoreCase(t.getTipo()))
+                .filter(t -> t.getTipo() == TipoTransacao.RECEITA)
                 .map(Transacao::getValor)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         // Calcular despesas
         BigDecimal totalDespesas = transacoes.stream()
-                .filter(t -> "DESPESA".equalsIgnoreCase(t.getTipo()))
+                .filter(t -> t.getTipo() == TipoTransacao.DESPESA)
                 .map(Transacao::getValor)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
