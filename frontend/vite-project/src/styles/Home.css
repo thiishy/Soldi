@@ -4,6 +4,14 @@ html, body, #root {
   height: 100%;
   width: 100%;
 }
+html {
+  scroll-behavior: smooth;
+}
+
+#saldo, #grafico, #transacoes {
+  scroll-margin-top: 80px; 
+}
+
 .App {
   background-color: #ffffff;
   min-height: 100vh;

@@ -24,17 +24,17 @@ return (
         <br></br>
         <ul className={styles.links}>
           <li>
-            <a href="#" className={styles.link}> 
+            <a href="#saldo-total" className={styles.link}> 
               <img src="src/assets/saldo.png" alt="Ícone do Saldo"/>
               Saldo</a>
           </li>
           <li>
-            <a href="#" className={styles.link}>
+            <a href="#transacao" className={styles.link}>
                <img src="src/assets/transacoes.png" alt="Ícone das Transações"/>
                Transações</a>
           </li>
           <li>
-            <a href="#" className={styles.link}>
+            <a href="#grafico" className={styles.link}>
                <img src="src/assets/grafico.png" alt="Ícone do Gráfico"/>
               Gráfico</a>
           </li>

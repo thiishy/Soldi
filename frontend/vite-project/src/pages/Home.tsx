@@ -10,7 +10,7 @@ function App() {
       <Nav/> 
       <main style={{ padding: '20px' }}>
 
-        <div className="cards">
+        <div id="saldo-total"className="cards">
           <Card 
             title="Saldo Total"
             description="..."
@@ -29,11 +29,11 @@ function App() {
           />
         </div>
 
-        <div style={{ marginTop: "30px" }}>
+        <div id="grafico"style={{ marginTop: "30px" }}>
           <Grafico />
         </div>
 
-        <div style={{ marginTop: "30px" }}>
+        <div id="transacao"style={{ marginTop: "30px" }}>
           <Table />
         </div>
 
