@@ -7,6 +7,7 @@
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 .recharts-default-tooltip {
   border-radius: 6px;
@@ -23,16 +24,33 @@
   flex-direction: column-reverse;
 }
 /*mobile*/
-@media (min-width: 320px) and (max-width: 480px) {
-  .fluxo-container {
-    height: 200px; 
-    padding: 10px;
-  }
-  .recharts-default-tooltip {
-    font-size: 11px;
-    padding: 3px 5px !important; 
-  }
-  .recharts-tooltip-item-list {
-   gap: 2px; 
-  }
+@media (max-width: 480px) {
+.fluxo-container {
+  width: 96%;
+  height: 200px; 
+  display: flex;
+  padding: 10px; 
+  margin: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+    
+.recharts-default-tooltip {
+  border-radius: 6px;
+  padding: 3px 5px !important; 
+  font-size: 11px;
+}
+    
+.recharts-tooltip-item-list {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2px; 
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #cccccc;
+  opacity: 0.3;
+    }
 }

@@ -44,22 +44,28 @@ export const Table: React.FC = () => {
           </tr>
         </thead>
 
-        <tbody>
-          {transactions.map((item) => (
-            <tr key={item.id}>
-              <td className="bold">{item.id}</td>
-              <td style={{ color: item.type === "entrada" ? "green" : "red", fontWeight: 600 }}>
-                {item.type === "entrada" ? "Entrada" : "Saída"}
-              </td>
-              <td>{item.description}</td>
-              <td>{item.date}</td>
-              <td className="text-right" style={{ color: item.value >= 0 ? "green" : "red" }}>
-                {formatCurrency(item.value)}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-
+    <tbody>
+      {transactions.map((item) => (
+        <tr key={item.id}>
+          <td className="bold" data-label="ID">{item.id}</td>
+          <td 
+            data-label="Tipo" 
+            style={{ color: item.type === "entrada" ? "green" : "red", fontWeight: 600 }}
+          >
+            {item.type === "entrada" ? "Entrada" : "Saída"}
+          </td>
+          <td data-label="Descrição">{item.description}</td> 
+          <td data-label="Data">{item.date}</td> 
+          <td 
+            className="text-right" 
+            data-label="Valor" 
+            style={{ color: item.value >= 0 ? "green" : "red" }}
+          >
+            {formatCurrency(item.value)}
+          </td>
+        </tr>
+      ))}
+    </tbody>
         <tfoot>
           <tr>
             <td colSpan={4}>Total Geral</td>
