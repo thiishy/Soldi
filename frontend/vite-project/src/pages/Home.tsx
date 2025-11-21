@@ -3,7 +3,7 @@ import { Card } from "../components/Card/Card";
 import { Nav } from "../components/Sidebar/Sidebar"; 
 import { Table } from "../components/Table/Table";
 import Grafico  from "../components/Grafico/Grafico"; //default nao tem {}
-import  { Chart }   from "../components/Grafico/Chart"; 
+import  { Chart }   from "../components/Chart/Chart"; 
 
 function App() {
   return (

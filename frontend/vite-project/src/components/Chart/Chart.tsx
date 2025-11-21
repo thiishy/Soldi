@@ -1,6 +1,8 @@
 import { Chart as ChartJS } from "chart.js/auto";//necessario para funcionar no web
 import {Bar,Doughnut} from "react-chartjs-2";
 import sourceData from "../../data/sourceData.json";
+import revenueData from "../../data/revenueData.json";
+import "./Chart.css";
 
 export const Chart = () => {
     return (
@@ -25,10 +27,10 @@ export const Chart = () => {
                 }} 
                 />
             </div> */}
-            <div className="dataCard customerCard">
+            <div className="dataCard bar customerCard">
                 <Bar 
                     data={{
-                        labels:sourceData.map((data) => data.label),
+                        labels:revenueData.map((data) => data.label),
                         datasets: [
                             {
                                 label: "Count",
@@ -45,10 +47,7 @@ export const Chart = () => {
                 />
             </div>
             
-            
-            <div className="dataCard categoryCard"> Chart 2 </div>
-
-            <div className="dataCard customerCard">
+            <div className="dataCard donut customerCard">
                 <Doughnut
                     data={{
                         labels:sourceData.map((data) => data.label),
