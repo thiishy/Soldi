@@ -1,0 +1,17 @@
+[
+    {
+        "label": "Jan",
+        "revenue": 12009,
+        "cost": 22685
+    },
+    {
+        "label": "Fev",
+        "revenue": 12070,
+        "cost": 32785
+    },
+    {
+        "label": "Marc",
+        "revenue": 12400,
+        "cost": 12615
+    }
+]

@@ -3,6 +3,7 @@ import { Card } from "../components/Card/Card";
 import { Nav } from "../components/Sidebar/Sidebar"; 
 import { Table } from "../components/Table/Table";
 import Grafico  from "../components/Grafico/Grafico"; //default nao tem {}
+import  { Chart }   from "../components/Grafico/Chart"; 
 
 function App() {
   return (
@@ -31,6 +32,10 @@ function App() {
 
         <div id="grafico"style={{ marginTop: "30px" }}>
           <Grafico />
+        </div>
+
+        <div id="grafico" style={{ marginTop: "30px" }}>
+          <Chart />
         </div>
 
         <div id="transacao"style={{ marginTop: "30px" }}>
