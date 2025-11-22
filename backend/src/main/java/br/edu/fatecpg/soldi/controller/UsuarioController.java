@@ -23,37 +23,34 @@ public class UsuarioController {
     private final TransacaoService transacaoService;
     private final ChatService chatService;
 
-    @GetMapping("/{uuid}/saldo")
-    public ResponseEntity<SaldoResponseDTO> getSaldo(@PathVariable("uuid") UUID uuidUsuario) {
-        SaldoResponseDTO saldo = usuarioService.getSaldo(uuidUsuario);
+    @GetMapping("/me/saldo")
+    public ResponseEntity<SaldoResponseDTO> getSaldo() {
+        SaldoResponseDTO saldo = usuarioService.getSaldo();
         return ResponseEntity.ok(saldo);
     }
 
-    @GetMapping("/{uuid}/transacoes/todas-transacoes")
-    public ResponseEntity<List<TransacaoResumoDTO>> listarTodas(
-            @PathVariable("uuid") UUID uuidUsuario) {
-        List<TransacaoResumoDTO> todasTransacoes = transacaoService.listarTodasTransacoes(uuidUsuario);
+    @GetMapping("/me/transacoes/todas-transacoes")
+    public ResponseEntity<List<TransacaoResumoDTO>> listarTodas() {
+        List<TransacaoResumoDTO> todasTransacoes = transacaoService.listarTodasTransacoes();
         return ResponseEntity.ok(todasTransacoes);
     }
 
-    @GetMapping("/{uuid}/transacoes/ai-insight")
-    public ResponseEntity<ChatResponseDTO> getAiInsight(@PathVariable("uuid") UUID uuidUsuario) {
-        ChatResponseDTO resposta = chatService.getTransactionInsight(uuidUsuario);
+    @GetMapping("/me/transacoes/ai-insight")
+    public ResponseEntity<ChatResponseDTO> getAiInsight() {
+        ChatResponseDTO resposta = chatService.getTransactionInsight();
         return ResponseEntity.ok(resposta);
     }
 
-    @GetMapping("/{uuid}/transacoes/recentes")
-    public ResponseEntity<List<TransacaoResumoDTO>> getTransacoesRecentes(
-            @PathVariable("uuid") UUID uuidUsuario) {
-        List<TransacaoResumoDTO> transacoes = transacaoService.getTransacoesRecentes(uuidUsuario);
+    @GetMapping("/me/transacoes/recentes")
+    public ResponseEntity<List<TransacaoResumoDTO>> getTransacoesRecentes() {
+        List<TransacaoResumoDTO> transacoes = transacaoService.getTransacoesRecentes();
         return ResponseEntity.ok(transacoes);
     }
 
 
-    @GetMapping("/{uuid}/analytics/gastos-categoria")
-    public ResponseEntity<List<GastoPorCategoriaDTO>> getGastosPorCategoria(
-            @PathVariable("uuid") UUID uuidUsuario) {
-        List<GastoPorCategoriaDTO> gastos = transacaoService.getGastosPorCategoria(uuidUsuario);
+    @GetMapping("/me/analytics/gastos-categoria")
+    public ResponseEntity<List<GastoPorCategoriaDTO>> getGastosPorCategoria() {
+        List<GastoPorCategoriaDTO> gastos = transacaoService.getGastosPorCategoria();
         return ResponseEntity.ok(gastos);
     }
 }
