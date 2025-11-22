@@ -21,12 +21,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final SecurityFilter securityFilter;
+    private final CustomCorsConfiguration customCorsConfiguration;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> cors.configure(http))
+                .cors(cors -> cors.configurationSource(customCorsConfiguration))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
