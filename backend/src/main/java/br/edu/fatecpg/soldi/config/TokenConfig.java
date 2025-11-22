@@ -35,7 +35,7 @@ public class TokenConfig {
                     .build().verify(token);
 
             return Optional.of(JWTUserData.builder()
-                    .usuarioUuid(UUID.fromString(decode.getClaim("usuarioUuid").asString()))
+                    .uuidUsuario(UUID.fromString(decode.getClaim("uuidUsuario").asString()))
                     .email(decode.getSubject())
                     .build());
         } catch(JWTVerificationException ex) {
