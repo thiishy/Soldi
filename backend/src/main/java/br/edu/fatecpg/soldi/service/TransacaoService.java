@@ -4,7 +4,6 @@ import br.edu.fatecpg.soldi.dto.request.AtualizarTransacaoDTO;
 import br.edu.fatecpg.soldi.dto.request.CriarTransacaoDTO;
 import br.edu.fatecpg.soldi.dto.response.GastoPorCategoriaDTO;
 import br.edu.fatecpg.soldi.dto.response.TransacaoResumoDTO;
-import br.edu.fatecpg.soldi.exception.AccessDeniedException;
 import br.edu.fatecpg.soldi.exception.ResourceNotFoundException;
 import br.edu.fatecpg.soldi.model.TipoTransacao;
 import br.edu.fatecpg.soldi.model.Transacao;
@@ -12,6 +11,7 @@ import br.edu.fatecpg.soldi.model.Usuario;
 import br.edu.fatecpg.soldi.repository.TransacaoRepository;
 import br.edu.fatecpg.soldi.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -97,7 +97,7 @@ public class TransacaoService {
     public List<TransacaoResumoDTO> listarTodasTransacoes() {
         UUID uuidUsuario = (UUID) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Usuario usuario = usuarioRepository.findByUuidExterno(uuidUsuario)
-                .orElseThrow(AccessDeniedException::new);
+                .orElseThrow(() -> new AccessDeniedException("Acesso negado"));
 
         return usuario.getTransacoes()
                 .stream()
@@ -108,7 +108,7 @@ public class TransacaoService {
     public TransacaoResumoDTO criarTransacao(CriarTransacaoDTO criarTransacaoDto) {
         UUID uuidUsuario = (UUID) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Usuario usuario = usuarioRepository.findByUuidExterno(uuidUsuario)
-                .orElseThrow(AccessDeniedException::new);
+                .orElseThrow(() -> new AccessDeniedException("Acesso negado"));
 
         Transacao transacao = new Transacao();
         transacao.setTipo(criarTransacaoDto.tipo());
