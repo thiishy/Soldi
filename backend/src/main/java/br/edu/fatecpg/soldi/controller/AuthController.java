@@ -5,6 +5,7 @@ import br.edu.fatecpg.soldi.dto.request.RegistrarRequestDTO;
 import br.edu.fatecpg.soldi.dto.response.LoginResponseDTO;
 import br.edu.fatecpg.soldi.dto.response.RegistrarResponseDTO;
 import br.edu.fatecpg.soldi.service.AuthService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@Tag(name = "Auth", description = "Endpoints relacionados ao login e registro de usuários")
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthService authService;

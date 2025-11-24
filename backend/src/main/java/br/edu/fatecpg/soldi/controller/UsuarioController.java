@@ -8,6 +8,7 @@ import br.edu.fatecpg.soldi.service.ChatService;
 import br.edu.fatecpg.soldi.service.TransacaoService;
 import br.edu.fatecpg.soldi.service.UsuarioService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/usuarios")
+@Tag(name = "Usuários", description = "Endpoints relacionados a todas as operações possíveis que o usuário pode realizar na sua própria conta")
 @RequiredArgsConstructor
 public class UsuarioController {
 

@@ -5,6 +5,7 @@ import br.edu.fatecpg.soldi.dto.request.CriarTransacaoDTO;
 import br.edu.fatecpg.soldi.dto.response.TransacaoResumoDTO;
 import br.edu.fatecpg.soldi.service.TransacaoService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/transacoes")
+@Tag(name = "Transações", description = "Endpoints relacionados a todas as operações possíveis que o usuário pode realizar em transações (CRUD)")
 @RequiredArgsConstructor
 public class TransacaoController {
 
