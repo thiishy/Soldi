@@ -1,0 +1,110 @@
+.table-container {
+  margin: 20px 0; 
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 16px;
+  border-radius: 8px;
+  background:  #99CD85;
+  border: 1px solid  #7ab961;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+.title {
+  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.invoice-table caption {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #ffffff;
+}
+.invoice-table th,
+.invoice-table td {
+  border-bottom: 1px solid #7ab961;;
+  padding: 10px;
+}
+.invoice-table th {
+  background: #7ab961;
+  text-align: left;
+  font-weight: bold;
+}
+.invoice-table td.text-right,
+.invoice-table th.text-right {
+  width: 120px;
+  letter-spacing: 0.5px;
+  text-align: right;
+}
+.bold {
+  font-weight: 600;
+}
+.invoice-table tbody tr:hover {
+  background-color: #7ab961;
+}
+/*mobile*/
+@media (max-width: 480px) {
+
+  .table-container {
+    padding: 10px;
+    max-width: 320px;
+  }
+
+  .invoice-table thead {
+    display: none;
+  }
+    
+  .invoice-table tr {
+    display: block;
+    margin-bottom: 12px;
+    border: 1px solid #7ab961;
+    border-radius: 6px;
+    padding: 0;
+  }
+    
+  .invoice-table td {
+    border: none;
+    padding: 8px 10px;
+  }
+
+  .invoice-table tr td:not(:last-child) {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ffffff;
+  }
+    
+  .invoice-table td::before {
+    font-weight: bold;
+    content: attr(data-label);
+    color: #444;
+    flex-basis: 40%;
+    text-align: left;
+  }
+
+  .invoice-table td.text-right {
+    width: auto;
+    font-family: inherit;
+    letter-spacing: normal;
+  }
+
+  .invoice-table tr td:last-child {
+    display: block; 
+    border-bottom: none;
+    padding-top: 4px;
+    padding-bottom: 8px;
+    text-align: right; 
+    font-size: 1.1em;
+  }
+
+  .invoice-table tr td:last-child::before {
+    content: none;
+    }
+  }

@@ -1,0 +1,57 @@
+.chartContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;     
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.dataCard.bar,
+.dataCard.donut {
+  width: 50%;
+  max-width: 600px;
+}
+.dataCard.bar {
+  height: 300px; 
+  display: flex;
+  padding: 10px;
+  margin: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+.dataCard.donut {
+  height: 300px; 
+  display: flex;
+  padding: 10px;
+  margin: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+@media (max-width: 768px) {
+  .chartContainer {
+    flex-wrap: wrap; 
+    justify-content: center;
+  }
+
+  .dataCard.donut {
+    width: 100%;
+    max-width: 320px;  
+    height: auto;        
+    padding: 10px;
+  }
+
+  .dataCard.bar {
+    width: 100%;       
+    max-width: 320px;    
+    height: auto;       
+    padding: 10px;
+  }
+}
+

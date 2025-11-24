@@ -1,0 +1,58 @@
+.fluxo-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  height: 300px; 
+  display: flex;
+  padding: 20px;
+  margin: 0;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+.recharts-default-tooltip {
+  border-radius: 6px;
+  padding: 4px 8px !important;
+  font-size: 13px;
+}
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+ stroke: #cccccc;
+  opacity: 0.3;
+}
+.recharts-tooltip-item-list {
+  display: flex;
+  flex-direction: column-reverse;
+}
+/*mobile*/
+@media (max-width: 480px) {
+  .fluxo-container {
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    padding: 10px; 
+    margin: 0;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .recharts-default-tooltip {
+    border-radius: 6px;
+    padding: 3px 5px !important; 
+    font-size: 11px;
+  }
+
+  .recharts-tooltip-item-list {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 2px; 
+  }
+
+  .recharts-cartesian-grid-horizontal line,
+  .recharts-cartesian-grid-vertical line {
+    stroke: #cccccc;
+    opacity: 0.3;
+      }
+  }

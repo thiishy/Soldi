@@ -25,7 +25,7 @@ public class Transacao {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TipoTransacao tipo; // "RECEITA" ou "DESPESA"
+    private TipoTransacao tipo;
 
     @Column(nullable = false)
     private BigDecimal valor;
@@ -34,7 +34,7 @@ public class Transacao {
     private String descricao;
 
     @Column(nullable = false)
-    private String categoria; // Ex: "Alimentação", "Transporte", "Salário", etc.
+    private String categoria;
 
     @Column(name = "data_transacao", nullable = false)
     @CreationTimestamp
