@@ -61,7 +61,7 @@
 
 .btn-login{
   padding: 14px 0px;
-  background-color: #059c37;
+  background-color: #7fc464;
   color: white;
   border: none;
   border-radius: 12px;
@@ -72,11 +72,11 @@
   margin-top: 24px;
   width: 100%;
 
-  box-shadow: 0 4px 6px rgba(79, 70, 229, 0.4); /* Sombra para destacar o botão */
+  box-shadow: 0 4px 6px #7fc464; 
   transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 .btn-login:hover {
-  background-color: #0056b3;
+  background-color: #99cd85;
 }
           
 .btn-login:active {
