@@ -5,6 +5,7 @@ import br.edu.fatecpg.soldi.dto.request.LoginRequestDTO;
 import br.edu.fatecpg.soldi.dto.request.RegistrarRequestDTO;
 import br.edu.fatecpg.soldi.dto.response.LoginResponseDTO;
 import br.edu.fatecpg.soldi.dto.response.RegistrarResponseDTO;
+import br.edu.fatecpg.soldi.exception.DataValidationException;
 import br.edu.fatecpg.soldi.model.Usuario;
 import br.edu.fatecpg.soldi.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,8 @@ public class AuthService {
     }
 
     public RegistrarResponseDTO registrarUsuario(RegistrarRequestDTO request) {
+        if(!request.senha().equals(request.confirmarSenha())) throw new DataValidationException("As senhas não coincidem.");
+
         Usuario novoUsuario = new Usuario();
         novoUsuario.setSenha(passwordEncoder.encode(request.senha()));
         novoUsuario.setEmail(request.email());
