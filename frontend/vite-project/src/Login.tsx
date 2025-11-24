@@ -1,7 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import "./styles/global.css";
-import './App.css';
 import {
   Card,
   CardContent,
