@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import type { FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import "./styles/global.css";
 import './App.css';
 import {
@@ -16,6 +16,7 @@ import Logo from './assets/logoSoldi.png';
 import authService from './services/auth.service';
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
@@ -28,10 +29,8 @@ function Login() {
 
     try {
       await authService.login({ email, senha });
-      // Login com sucesso! Redirecionar para dashboard
       alert('Login realizado com sucesso!');
-      // TODO: Adicionar navegação para o dashboard
-      // window.location.href = '/dashboard';
+      navigate('/home');
     } catch (error: any) {
       const mensagemErro = error.response?.data?.message || 'Erro ao fazer login. Verifique suas credenciais.';
       setErro(mensagemErro);
@@ -90,9 +89,9 @@ function Login() {
                   )}
 
                   <br />
-                  <a href="#" className="link">
+                  <Link to="/register" className="link">
                     Cadastre-se
-                  </a>
+                  </Link>
                   <Button
                     className="btn-login"
                     type="submit"

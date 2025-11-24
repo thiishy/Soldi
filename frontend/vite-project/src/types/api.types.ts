@@ -1,4 +1,4 @@
-// Tipos de Transação
+// Enums
 export const TipoTransacao = {
   RECEITA: 'RECEITA',
   DESPESA: 'DESPESA'
@@ -6,31 +6,42 @@ export const TipoTransacao = {
 
 export type TipoTransacao = typeof TipoTransacao[keyof typeof TipoTransacao];
 
-// REQUEST - Login
+// Request DTOs
 export interface LoginRequest {
   email: string;
   senha: string;
 }
 
-// REQUEST - Registro
 export interface RegistrarRequest {
   nome: string;
   email: string;
   senha: string;
 }
 
-// RESPONSE - Login
+export interface CriarTransacaoRequest {
+  tipo: TipoTransacao;
+  valor: number;
+  descricao: string;
+  categoria: string;
+}
+
+export interface AtualizarTransacaoRequest {
+  tipo?: TipoTransacao;
+  valor?: number;
+  descricao?: string;
+  categoria?: string;
+}
+
+// Response DTOs
 export interface LoginResponse {
   token: string;
 }
 
-// RESPONSE - Registro
 export interface RegistrarResponse {
   nome: string;
   email: string;
 }
 
-// RESPONSE - Transação
 export interface TransacaoResumo {
   uuidTransacao: string;
   tipo: TipoTransacao;
@@ -40,9 +51,20 @@ export interface TransacaoResumo {
   dataTransacao: string;
 }
 
-// RESPONSE - Saldo
 export interface SaldoResponse {
   saldoTotal: number;
   totalReceitas: number;
   totalDespesas: number;
+}
+
+export interface GastoPorCategoria {
+  categoria: string;
+  total: number;
+  quantidadeTransacoes: number;
+  percentual: number;
+}
+
+export interface ChatResponse {
+  resposta: string;
+  dataResposta: string;
 }

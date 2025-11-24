@@ -1,25 +1,38 @@
 import "./Grafico.css";
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
+import type { GastoPorCategoria } from "../../types/api.types";
 
-const data = [ //array de objetos
-  { name: "Sem 1", saida: 4000, entrada: 2500 },
-  { name: "Sem 2", saida: 3000, entrada: 2000 },
-  { name: "Sem 3", saida: 10000, entrada: 8000 },
-  { name: "Sem 4", saida: 5000, entrada: 3500 },
-  { name: "Sem 5", saida: 6000, entrada: 3000 },
-  { name: "Sem 6", saida: 5500, entrada: 3300 },
-  { name: "Atual", saida: 7000, entrada: 3800 },
-];
+interface GraficoProps {
+  dados?: GastoPorCategoria[];
+}
 
-export default function FluxoCaixaChart() {
-  return (
+export default function FluxoCaixaChart({ dados = [] }: GraficoProps) {
   
+  const chartData = dados.map((item) => ({
+    name: item.categoria,
+    saida: item.total,
+    entrada: 0,
+  }));
+
+  if (chartData.length === 0) {
+    return (
+      <div className="fluxo-container" style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        minHeight: '300px'
+      }}>
+        <p>Nenhum dado disponível para exibir o gráfico.</p>
+      </div>
+    );
+  }
+
+  return (
     <div className="fluxo-container">
+      <h2>Gastos por Categoria</h2>
       <ResponsiveContainer>
-        {/* areas e eixos */}
-        <AreaChart data={data}> 
+        <AreaChart data={chartData}> 
           <defs>
-            {/* linearGradient =  gradiente vertical */}
             <linearGradient id="colorEntrada" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#00b96b" stopOpacity={0.3}/>
               <stop offset="95%" stopColor="#00b96b" stopOpacity={0}/>
@@ -33,10 +46,10 @@ export default function FluxoCaixaChart() {
 
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis  width={70} tickFormatter={(value) => `R$ ${value}`} />
+          <YAxis width={70} tickFormatter={(value: number) => `R$ ${value}`} />
           <Tooltip />
 
-        <Area 
+          <Area 
             type="monotone" 
             dataKey="saida" 
             stroke="#ff4d4f" 
@@ -49,7 +62,6 @@ export default function FluxoCaixaChart() {
             stroke="#00b96b" 
             fill="url(#colorEntrada)" 
           />
-
         </AreaChart>
       </ResponsiveContainer>
     </div>

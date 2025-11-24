@@ -1,9 +1,8 @@
 import axios from 'axios';
+import type { InternalAxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
-// URL da sua API Spring Boot
 const API_URL = 'http://127.0.0.1:8080/api/v1';
 
-// Criar instância do Axios
 const api = axios.create({
   baseURL: API_URL,
   headers: {
@@ -11,19 +10,19 @@ const api = axios.create({
   },
 });
 
-// Adicionar token JWT automaticamente em todas as requisições
-api.interceptors.request.use((config) => {
+// REQUEST INTERCEPTOR - Adiciona token automaticamente
+api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   const token = localStorage.getItem('token');
-  if (token) {
+  if (token && config.headers) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
 
-// Tratar erro 401 (não autorizado) - fazer logout automático
+// RESPONSE INTERCEPTOR - Tratamento de erros
 api.interceptors.response.use(
-  (response) => response,
-  (error) => {
+  (response: AxiosResponse) => response,
+  (error: AxiosError) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       window.location.href = '/login';

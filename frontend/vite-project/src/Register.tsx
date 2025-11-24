@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import "./styles/global.css";
 import './App.css';
 import {
@@ -14,6 +15,7 @@ import Logo from './assets/logoSoldi.png';
 import authService from './services/auth.service';
 
 function Register() {
+  const navigate = useNavigate();
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -47,7 +49,7 @@ function Register() {
       
       // Redirecionar para login após 2 segundos
       setTimeout(() => {
-        window.location.href = '/login';
+        navigate('/login');
       }, 2000);
       
     } catch (error: any) {
@@ -139,6 +141,9 @@ function Register() {
                   )}
 
                   <br />
+                  <Link to="/login" className="link">
+                    Já tem conta? Faça login
+                  </Link>
                   <Button 
                     className="btn-login" 
                     type="submit"
