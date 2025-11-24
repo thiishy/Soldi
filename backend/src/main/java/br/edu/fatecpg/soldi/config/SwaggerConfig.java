@@ -13,12 +13,12 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .info(new Info().title("Soldi API").version("1.0.0"))
+                .info(new Info().title("Soldi API").version("1.0.0").description("API REST do Soldi, um gerenciador de finanças pessoais."))
                 .components(new Components()
                         .addSecuritySchemes("bearerAuth", new SecurityScheme()
                                 .type(SecurityScheme.Type.HTTP)
                                 .scheme("bearer")
                                 .bearerFormat("JWT")
-                                .description("Token JWT para autenticação.")));
+                                .description("Token JWT para auth")));
     }
 }
