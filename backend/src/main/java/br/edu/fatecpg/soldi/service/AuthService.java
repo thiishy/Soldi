@@ -22,6 +22,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final TokenConfig tokenConfig;
+    private final EmailService emailService;
 
     public LoginResponseDTO loginUsuario(LoginRequestDTO request) {
         UsernamePasswordAuthenticationToken userAndPass = new UsernamePasswordAuthenticationToken(request.email(), request.senha());
@@ -42,6 +43,7 @@ public class AuthService {
         novoUsuario.setNome(request.nome());
 
         usuarioRepository.save(novoUsuario);
+        emailService.enviarEmail(new EmailDetails(request.email(), "Bem-vindo(a) ao Soldi, " + request.nome() + "! \uD83D\uDCCA\n\nAproveite o nosso sistema de gerenciamento de finanças pessoais.\n\nAtenciosamente,\nEquipe Soldi", "Soldi - cadastro realizado com sucesso!"));
         return new RegistrarResponseDTO(novoUsuario.getNome(), novoUsuario.getEmail());
     }
 }
