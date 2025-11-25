@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import styles from './Sidebar.module.css';
 import authService from '../../services/auth.service';
 
@@ -10,7 +10,6 @@ export const Nav: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Buscar nome do usuário ao montar componente
     const name = authService.getUserName();
     const initials = authService.getUserInitials();
     
@@ -27,6 +26,11 @@ export const Nav: React.FC = () => {
   const handleLogout = () => {
     authService.logout();
     navigate('/login');
+  };
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+    setIsOpen(false); // Fecha sidebar após clicar
   };
 
   return (
@@ -55,35 +59,28 @@ export const Nav: React.FC = () => {
 
           <ul className={styles.links}>
             <li>
-              <a href="#saldo-total" className={styles.link}> 
+              <button onClick={() => handleNavigate('/home')} className={styles.link}> 
                 <img src="/src/assets/saldo.png" alt="Ícone do Saldo"/>
                 Saldo
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#transacao" className={styles.link}>
+              <button onClick={() => handleNavigate('/transacoes')} className={styles.link}>
                 <img src="/src/assets/transacoes.png" alt="Ícone das Transações"/>
                 Transações
-              </a>
+              </button>
             </li>
             <li>
-              <a href="#grafico" className={styles.link}>
+              <button onClick={() => handleNavigate('/home')} className={styles.link}>
                 <img src="/src/assets/grafico.png" alt="Ícone do Gráfico"/>
                 Gráfico
-              </a>
+              </button>
             </li>
             <li>
               <button onClick={handleLogout} className={styles.link}>
                 <img src="/src/assets/logout.png" alt="Ícone de Logout"/>
                 Logout
               </button>
-            </li>
-
-            <li>
-              <Link to="/transacoes" className={styles.link}>
-                <img src="/src/assets/transacoes.png" alt="Ícone das Transações"/>
-                Transações
-              </Link>
             </li>
           </ul>
         </div>
