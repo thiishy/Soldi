@@ -1,5 +1,6 @@
-package br.edu.fatecpg.soldi.exception;
+package br.edu.fatecpg.soldi.exception.handler;
 
+import br.edu.fatecpg.soldi.exception.PermissionErrorMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;

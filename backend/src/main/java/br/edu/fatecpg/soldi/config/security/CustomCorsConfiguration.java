@@ -1,4 +1,4 @@
-package br.edu.fatecpg.soldi.config;
+package br.edu.fatecpg.soldi.config.security;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;

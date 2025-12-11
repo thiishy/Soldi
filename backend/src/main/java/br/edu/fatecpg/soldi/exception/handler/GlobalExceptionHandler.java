@@ -1,5 +1,7 @@
-package br.edu.fatecpg.soldi.exception;
+package br.edu.fatecpg.soldi.exception.handler;
 
+import br.edu.fatecpg.soldi.exception.PasswordConfirmationException;
+import br.edu.fatecpg.soldi.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;

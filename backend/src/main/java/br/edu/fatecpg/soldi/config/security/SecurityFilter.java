@@ -1,4 +1,4 @@
-package br.edu.fatecpg.soldi.config;
+package br.edu.fatecpg.soldi.config.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
