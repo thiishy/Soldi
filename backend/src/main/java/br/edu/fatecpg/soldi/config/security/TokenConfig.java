@@ -1,4 +1,4 @@
-package br.edu.fatecpg.soldi.config;
+package br.edu.fatecpg.soldi.config.security;
 
 import br.edu.fatecpg.soldi.model.Usuario;
 import com.auth0.jwt.JWT;

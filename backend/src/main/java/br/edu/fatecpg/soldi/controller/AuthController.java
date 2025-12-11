@@ -1,9 +1,9 @@
 package br.edu.fatecpg.soldi.controller;
 
-import br.edu.fatecpg.soldi.dto.request.LoginRequestDTO;
-import br.edu.fatecpg.soldi.dto.request.RegistrarRequestDTO;
-import br.edu.fatecpg.soldi.dto.response.LoginResponseDTO;
-import br.edu.fatecpg.soldi.dto.response.RegistrarResponseDTO;
+import br.edu.fatecpg.soldi.dto.request.auth.LoginRequestDTO;
+import br.edu.fatecpg.soldi.dto.request.auth.RegistrarRequestDTO;
+import br.edu.fatecpg.soldi.dto.response.auth.LoginResponseDTO;
+import br.edu.fatecpg.soldi.dto.response.auth.RegistrarResponseDTO;
 import br.edu.fatecpg.soldi.service.AuthService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;

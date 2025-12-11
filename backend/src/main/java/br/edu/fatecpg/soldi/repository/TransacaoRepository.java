@@ -16,8 +16,9 @@ public interface TransacaoRepository extends JpaRepository<Transacao, Long> {
     @Query("SELECT t FROM Transacao t WHERE t.uuidExterno = :uuidExterno AND t.usuario.uuidExterno = :uuidUsuario")
     Optional<Transacao> findByUuidExternoAndUsuarioUuidExterno(@Param("uuidExterno") UUID uuidExterno, @Param("uuidUsuario") UUID uuidUsuario);
 
-    @Query("SELECT t FROM Transacao t WHERE t.usuario.uuidExterno = :uuidUsuario ORDER BY t.dataTransacao DESC LIMIT 5")
-    List<Transacao> buscarUltimasCinco(@Param("uuidUsuario") UUID uuidUsuario);
+    List<Transacao> findTop5ByUsuario_UuidExternoOrderByDataTransacaoDesc(UUID uuidExterno);
+
+    List<Transacao> findTop30ByUsuario_UuidExternoOrderByDataTransacaoDesc(UUID uuidExterno);
 
     @Query("SELECT t FROM Transacao t WHERE t.usuario.uuidExterno = :uuidUsuario")
     List<Transacao> findAllByUsuarioUuid(@Param("uuidUsuario") UUID uuidUsuario);

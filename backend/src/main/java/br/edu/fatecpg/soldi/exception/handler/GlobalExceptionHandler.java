@@ -1,5 +1,7 @@
-package br.edu.fatecpg.soldi.exception;
+package br.edu.fatecpg.soldi.exception.handler;
 
+import br.edu.fatecpg.soldi.exception.PasswordConfirmationException;
+import br.edu.fatecpg.soldi.exception.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -34,8 +36,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(DataValidationException.class)
-    public ResponseEntity<Map<String, Object>> handleDataValidationException(DataValidationException ex) {
+    @ExceptionHandler(PasswordConfirmationException.class)
+    public ResponseEntity<Map<String, Object>> handlePasswordConfirmationException(PasswordConfirmationException ex) {
         Map<String, Object> errorResponse = new HashMap<>();
         errorResponse.put("timestamp", LocalDateTime.now());
         errorResponse.put("status", HttpStatus.UNPROCESSABLE_ENTITY.value());

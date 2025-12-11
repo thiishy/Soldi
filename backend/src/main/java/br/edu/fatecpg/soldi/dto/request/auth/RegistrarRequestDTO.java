@@ -1,8 +1,7 @@
-package br.edu.fatecpg.soldi.dto.request;
+package br.edu.fatecpg.soldi.dto.request.auth;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public record RegistrarRequestDTO(@NotBlank(message = "O nome é obrigatório.") String nome,

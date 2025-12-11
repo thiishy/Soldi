@@ -1,7 +1,7 @@
-package br.edu.fatecpg.soldi.config;
+package br.edu.fatecpg.soldi.config.security;
 
-import br.edu.fatecpg.soldi.exception.CustomAccessDeniedHandler;
-import br.edu.fatecpg.soldi.exception.CustomAuthenticationEntryPoint;
+import br.edu.fatecpg.soldi.exception.handler.CustomAccessDeniedHandler;
+import br.edu.fatecpg.soldi.exception.handler.CustomAuthenticationEntryPoint;
 import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -35,7 +35,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .headers(headers -> headers
                         .contentSecurityPolicy(csp -> csp
-                                .policyDirectives("default-src 'self'; script-src 'self'; img-src 'self'; frame-ancestors 'none'; form-action 'none'"))
+                                .policyDirectives("default-src 'self'; frame-ancestors 'none'"))
                 )
                 .authorizeHttpRequests(authorize -> authorize
                         .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll()
