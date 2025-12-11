@@ -32,7 +32,7 @@ public class TransacaoService {
     public List<TransacaoResumoDTO> getTransacoesRecentes() {
         UUID uuidUsuario = (UUID) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Transacao> transacoes = transacaoRepository
-                .buscarUltimasCinco(uuidUsuario);
+                .findTop5ByUsuario_UuidExternoOrderByDataTransacaoDesc(uuidUsuario);
 
         return transacoes.stream()
                 .map(this::converterParaResumoDTO)
