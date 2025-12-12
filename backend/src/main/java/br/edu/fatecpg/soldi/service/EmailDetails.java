@@ -1,3 +1,5 @@
 package br.edu.fatecpg.soldi.service;
 
-public record EmailDetails(String destinatario, String corpoMensagem, String assunto) { }
+import java.util.Map;
+
+public record EmailDetails(String destinatario, String assunto, Map<String, Object> templateVariables) { }
