@@ -108,8 +108,8 @@ O projeto foi desenvolvido seguindo as melhores práticas de desenvolvimento, co
 | Tecnologia | Versão | Descrição |
 |------------|--------|-----------|
 | **Spring Boot** | 3.5.7 | Framework Java para backend |
-| **Java** | 17+ | Linguagem de programação |
-| **PostgreSQL** | 16.x | Banco de dados relacional |
+| **Java** | 24 | Linguagem de programação |
+| **PostgreSQL** | 16 | Banco de dados relacional |
 | **Spring Security** | 6.3.x | Autenticação e autorização |
 | **JWT (Auth0 Java JWT)** | 4.4.0 | JSON Web Tokens |
 | **OpenAI (Spring AI)** | 1.1.0 | Integração com IA |
@@ -157,8 +157,8 @@ Antes de começar, certifique-se de ter instalado:
 ### 1. Clone o Repositório
 
 ```bash
-git clone https://github.com/thiimont/soldi.git
-cd soldi
+git clone https://github.com/thiimont/Soldi.git
+cd Soldi
 ```
 
 ### 2. Configurar Backend
@@ -221,7 +221,7 @@ br.edu.fatecpg.soldi.react-base-url=${REACT_BASE_URL}
 Crie **na raiz do projeto** um arquivo `.env` com:
 
 ```env
-DB_URL=jdbc:postgresql://localhost:5433/db_soldi
+DB_URL=jdbc:postgresql://localhost:5432/db_soldi
 DB_USERNAME=postgres
 DB_PASSWORD=postgres
 
@@ -299,7 +299,7 @@ mvn spring-boot:run
 
 O backend estará rodando em: `http://localhost:8080`
 
-**Acessar Swagger:** `http://localhost:8080/swagger-ui.html`
+**Acessar Swagger:** `http://localhost:8080/swagger-ui/index.html`
 
 #### 2. Iniciar Frontend
 
@@ -633,7 +633,7 @@ setSaldo(dados);
         <img src="https://github.com/Frank1br.png" width="100px;" alt="Frank Oliveira"/><br>
         <sub><b>Frank Oliveira</b></sub>
       </a><br>
-      <sub>FullStack Developer</sub>
+      <sub>Fullstack Developer</sub>
     </td>
     <td align="center">
       <a href="https://github.com/isabelamarchesoni">
