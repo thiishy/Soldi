@@ -115,6 +115,7 @@ O projeto foi desenvolvido seguindo as melhores práticas de desenvolvimento, co
 | **OpenAI (Spring AI)**          | 1.1.0  | Integração com IA              |
 | **Lombok**                      | 1.18.x | Redução de boilerplate         |
 | **Swagger/OpenAPI (Springdoc)** | 2.8.14 | Documentação automática da API |
+| **Java Mail Sender**            | 3.5.7  | Envio de emails                |
 | **Thymeleaf**                   | 3.5.7  | Templates para emails          |
 
 ### DevOps & Tools
