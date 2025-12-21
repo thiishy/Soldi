@@ -49,7 +49,8 @@ public class AuthService {
 
         Map<String, Object> templateVariables = new HashMap<>();
         templateVariables.put("nome", novoUsuario.getNome());
-        emailService.enviarEmail(new EmailDetails(novoUsuario.getEmail(), "Bem-vindo(a) ao Soldi!", templateVariables), "boasvindas.html");
+        emailService.enviarEmail(new EmailDetails(novoUsuario.getEmail(),
+                "Bem-vindo(a) ao Soldi!", templateVariables), "boasvindas.html");
         
         return new RegistrarResponseDTO(novoUsuario.getNome(), novoUsuario.getEmail());
     }

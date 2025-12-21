@@ -9,7 +9,6 @@ import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.openai.OpenAiChatModel;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,8 +21,7 @@ public class ChatService {
     private final OpenAiChatModel openAiChatModel;
     private final TransacaoRepository transacaoRepository;
 
-    public ChatResponseDTO getTransactionInsight() {
-        UUID uuidUsuario = (UUID) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public ChatResponseDTO getTransactionInsight(UUID uuidUsuario) {
         List<TransacaoResumoDTO> lista = transacaoRepository.findTop30ByUsuario_UuidExternoOrderByDataTransacaoDesc(uuidUsuario)
                 .stream()
                 .map(t -> new TransacaoResumoDTO(t.getUuidExterno(), t.getTipo(), t.getValor(), t.getDescricao(), t.getCategoria(), t.getDataTransacao()))
