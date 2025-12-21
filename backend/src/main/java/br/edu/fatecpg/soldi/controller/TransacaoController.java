@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -24,32 +25,33 @@ public class TransacaoController {
 
     @PostMapping
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<TransacaoResumoDTO> criar(@RequestBody @Valid CriarTransacaoDTO criarTransacaoDto) {
-        TransacaoResumoDTO novaTransacao = transacaoService.criarTransacao(criarTransacaoDto);
+    public ResponseEntity<TransacaoResumoDTO> criar(@AuthenticationPrincipal UUID uuidUsuario, @RequestBody @Valid CriarTransacaoDTO criarTransacaoDto) {
+        TransacaoResumoDTO novaTransacao = transacaoService.criarTransacao(uuidUsuario, criarTransacaoDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(novaTransacao);
     }
 
     @GetMapping("/{uuid}")
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<TransacaoResumoDTO> buscarPorUuid(@PathVariable("uuid") UUID uuidTransacao) {
-        TransacaoResumoDTO transacaoEncontrada = transacaoService.buscarTransacao(uuidTransacao);
+    public ResponseEntity<TransacaoResumoDTO> buscarPorUuid(@AuthenticationPrincipal UUID uuidUsuario, @PathVariable("uuid") UUID uuidTransacao) {
+        TransacaoResumoDTO transacaoEncontrada = transacaoService.buscarTransacao(uuidUsuario, uuidTransacao);
         return ResponseEntity.ok().body(transacaoEncontrada);
     }
 
     @PutMapping("/{uuid}")
     @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<TransacaoResumoDTO> atualizar(
+            @AuthenticationPrincipal UUID uuidUsuario,
             @PathVariable("uuid") UUID uuidTransacao,
             @RequestBody @Valid AtualizarTransacaoDTO transacaoAtualizada) {
 
-        TransacaoResumoDTO transacaoAtt = transacaoService.atualizarTransacao(uuidTransacao, transacaoAtualizada);
+        TransacaoResumoDTO transacaoAtt = transacaoService.atualizarTransacao(uuidUsuario, uuidTransacao, transacaoAtualizada);
         return ResponseEntity.ok().body(transacaoAtt);
     }
 
     @DeleteMapping("/{uuid}")
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<Void> deletar(@PathVariable("uuid") UUID uuidTransacao) {
-        transacaoService.deletarTransacao(uuidTransacao);
+    public ResponseEntity<Void> deletar(@AuthenticationPrincipal UUID uuidUsuario, @PathVariable("uuid") UUID uuidTransacao) {
+        transacaoService.deletarTransacao(uuidUsuario, uuidTransacao);
         return ResponseEntity.noContent().build();
     }
 }

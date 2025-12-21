@@ -8,9 +8,11 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/usuarios")
@@ -24,44 +26,44 @@ public class UsuarioController {
 
     @GetMapping("/me/saldo")
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<SaldoResponseDTO> getSaldo() {
-        SaldoResponseDTO saldo = usuarioService.getSaldo();
+    public ResponseEntity<SaldoResponseDTO> getSaldo(@AuthenticationPrincipal UUID uuidUsuario) {
+        SaldoResponseDTO saldo = usuarioService.getSaldo(uuidUsuario);
         return ResponseEntity.ok(saldo);
     }
 
     @GetMapping("/me/transacoes/todas-transacoes")
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<List<TransacaoResumoDTO>> listarTodas() {
-        List<TransacaoResumoDTO> todasTransacoes = transacaoService.listarTodasTransacoes();
+    public ResponseEntity<List<TransacaoResumoDTO>> listarTodas(@AuthenticationPrincipal UUID uuidUsuario) {
+        List<TransacaoResumoDTO> todasTransacoes = transacaoService.listarTodasTransacoes(uuidUsuario);
         return ResponseEntity.ok(todasTransacoes);
     }
 
     @GetMapping("/me/transacoes/ai-insight")
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<ChatResponseDTO> getAiInsight() {
-        ChatResponseDTO resposta = chatService.getTransactionInsight();
+    public ResponseEntity<ChatResponseDTO> getAiInsight(@AuthenticationPrincipal UUID uuidUsuario) {
+        ChatResponseDTO resposta = chatService.getTransactionInsight(uuidUsuario);
         return ResponseEntity.ok(resposta);
     }
 
     @GetMapping("/me/transacoes/recentes")
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<List<TransacaoResumoDTO>> getTransacoesRecentes() {
-        List<TransacaoResumoDTO> transacoes = transacaoService.getTransacoesRecentes();
+    public ResponseEntity<List<TransacaoResumoDTO>> getTransacoesRecentes(@AuthenticationPrincipal UUID uuidUsuario) {
+        List<TransacaoResumoDTO> transacoes = transacaoService.getTransacoesRecentes(uuidUsuario);
         return ResponseEntity.ok(transacoes);
     }
 
 
     @GetMapping("/me/analytics/gastos-categoria")
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<List<GastoPorCategoriaDTO>> getGastosPorCategoria() {
-        List<GastoPorCategoriaDTO> gastos = transacaoService.getGastosPorCategoria();
+    public ResponseEntity<List<GastoPorCategoriaDTO>> getGastosPorCategoria(@AuthenticationPrincipal UUID uuidUsuario) {
+        List<GastoPorCategoriaDTO> gastos = transacaoService.getGastosPorCategoria(uuidUsuario);
         return ResponseEntity.ok(gastos);
     }
 
     @GetMapping("/me/analytics/gastos-mensais")
     @SecurityRequirement(name = "bearerAuth")
-    public ResponseEntity<List<GastoMensalDTO>> getGastosMensais() {
-        List<GastoMensalDTO> gastoMensal = transacaoService.getGastosMensais();
+    public ResponseEntity<List<GastoMensalDTO>> getGastosMensais(@AuthenticationPrincipal UUID uuidUsuario) {
+        List<GastoMensalDTO> gastoMensal = transacaoService.getGastosMensais(uuidUsuario);
         return ResponseEntity.ok(gastoMensal);
     }
 }
