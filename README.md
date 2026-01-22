@@ -645,8 +645,8 @@ setSaldo(dados);
       <sub>Fullstack Developer</sub>
     </td>
     <td align="center">
-      <a href="https://github.com/thiimont">
-        <img src="https://github.com/thiimont.png" width="100px;" alt="Thiago Monteiro"/><br>
+      <a href="https://github.com/thiishy">
+        <img src="https://github.com/thiishy.png" width="100px;" alt="Thiago Monteiro"/><br>
         <sub><b>Thiago Monteiro</b></sub>
       </a><br>
       <sub>Backend Developer</sub>
